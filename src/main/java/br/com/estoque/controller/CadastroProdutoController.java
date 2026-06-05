@@ -15,37 +15,41 @@ import java.util.ResourceBundle;
 
 public class CadastroProdutoController implements Initializable {
 
-    @FXML
-    private TextField txtNome;
-    @FXML
-    private ComboBox<String> comboCategoria;
-    @FXML
-    private TextField txtCusto;
-    @FXML
-    private TextField txtValidade;
-    @FXML
-    private TextField txtEstoque;
-    @FXML
-    private TextField txtTempoReposicao;
-    @FXML
-    private TextField txtConsumoMedio;
+    @FXML private TextField txtNome;
+    @FXML private ComboBox<String> comboCategoria;
+    @FXML private TextField txtCusto;
+    @FXML private TextField txtValidade;
+    @FXML private TextField txtEstoque;
+    @FXML private TextField txtTempoReposicao;
+    @FXML private TextField txtConsumoMedio;
 
     private ProdutoDAO produtoDAO;
+    private Produto produtoParaEditar;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         produtoDAO = new ProdutoDAO();
-        comboCategoria.getItems().addAll("Alimentos", "Bebidas", "Limpeza", "Higiene", "Outros");
+        comboCategoria.getItems().addAll("Alimentos", "Bebidas", "Limpeza", "Higiene", "Outros", "Padaria", "Salgado", "Confeitaria", "Encomendados", "Diversos");
         comboCategoria.getSelectionModel().selectFirst();
+    }
+
+    public void setProdutoParaEditar(Produto produto) {
+        this.produtoParaEditar = produto;
+        if (produto != null) {
+            txtNome.setText(produto.getNome());
+            comboCategoria.setValue(produto.getCategoria());
+            txtCusto.setText(String.valueOf(produto.getCusto()));
+            txtValidade.setText(String.valueOf(produto.getValidade()));
+            txtEstoque.setText(String.valueOf(produto.getEstoque()));
+            txtTempoReposicao.setText(String.valueOf(produto.getTempoDeReposicaoEmDias()));
+            txtConsumoMedio.setText(String.valueOf(produto.getConsumoMedioDiario()));
+        }
     }
 
     @FXML
     private void handleSalvar() {
         if (validarCampos()) {
             try {
-                List<Produto> produtos = produtoDAO.carregarProdutos();
-                int id = produtoDAO.gerarProximoId(produtos);
-
                 String nome = txtNome.getText();
                 String categoria = comboCategoria.getValue();
                 double custo = Double.parseDouble(txtCusto.getText().replace(",", "."));
@@ -54,15 +58,32 @@ public class CadastroProdutoController implements Initializable {
                 int tempoReposicao = Integer.parseInt(txtTempoReposicao.getText());
                 int consumoMedio = Integer.parseInt(txtConsumoMedio.getText());
 
-                Produto novoProduto = new Produto(id, nome, categoria, custo, validade, estoque, tempoReposicao, consumoMedio);
-                produtos.add(novoProduto);
-
-                if (produtoDAO.salvarProdutos(produtos)) {
-                    mostrarInformacao("Produto salvo com sucesso!");
-                    fecharJanela();
+                if (produtoParaEditar == null) {
+                    // Novo Produto
+                    List<Produto> produtos = produtoDAO.carregarProdutos();
+                    int id = produtoDAO.gerarProximoId(produtos);
+                    Produto novo = new Produto(id, nome, categoria, custo, validade, estoque, tempoReposicao, consumoMedio);
+                    produtos.add(novo);
+                    produtoDAO.salvarProdutos(produtos);
                 } else {
-                    mostrarErro("Erro ao salvar o produto no arquivo.");
+                    // Editando Produto
+                    produtoParaEditar.setNome(nome);
+                    produtoParaEditar.setCategoria(categoria);
+                    produtoParaEditar.setCusto(custo);
+                    produtoParaEditar.setValidade(validade);
+                    produtoParaEditar.setEstoque(estoque);
+                    produtoParaEditar.setTempoDeReposicaoEmDias(tempoReposicao);
+                    produtoParaEditar.setConsumoMedioDiario(consumoMedio);
+                    
+                    // Recalcula campos dependentes
+                    produtoParaEditar.calcularEstoqueDeSeguranca();
+                    produtoParaEditar.calcularPontoDePedido();
+                    
+                    produtoDAO.atualizarProduto(produtoParaEditar);
                 }
+
+                mostrarInformacao("Produto salvo com sucesso!");
+                fecharJanela();
 
             } catch (NumberFormatException e) {
                 mostrarErro("Por favor, insira valores numéricos válidos.");

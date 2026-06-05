@@ -55,22 +55,18 @@ public class ProdutoDAO {
 
                 String[] campos = linha.split(";");
 
-                // Tentativa de carregar tanto o formato antigo quanto o novo
                 try {
                     if (campos.length >= 7) {
                         int id = Integer.parseInt(campos[0]);
                         String nome = campos[1];
                         String categoria = campos[2];
                         
-                        // No formato novo, custo é o índice 3. No antigo, parece ser o 4.
-                        // Vamos tentar detectar pela quantidade de campos ou lógica de negócio
                         double custo;
                         int estoque;
-                        int tempoReposicao = 5; // default
-                        int consumoMedio = 2;   // default
+                        int tempoReposicao = 5; 
+                        int consumoMedio = 2;   
 
                         if (campos.length >= 9) {
-                            // Formato Novo (id;nome;categoria;custo;validade;estoque;seguranca;reposicao;consumo;ponto)
                             custo = Double.parseDouble(campos[3].replace(",", "."));
                             int validade = Integer.parseInt(campos[4]);
                             estoque = Integer.parseInt(campos[5]);
@@ -80,12 +76,8 @@ public class ProdutoDAO {
                             Produto p = new Produto(id, nome, categoria, custo, validade, estoque, tempoReposicao, consumoMedio);
                             produtos.add(p);
                         } else {
-                            // Formato Antigo Detectado (id;nome;categoria;preco;custo;lucro;estoque)
-                            // custo está no índice 4, estoque no índice 6
                             custo = Double.parseDouble(campos[4].replace(",", "."));
                             estoque = Integer.parseInt(campos[6]);
-                            
-                            // Cria com valores padrão para os novos campos
                             Produto p = new Produto(id, nome, categoria, custo, 365, estoque, tempoReposicao, consumoMedio);
                             produtos.add(p);
                         }
@@ -114,6 +106,17 @@ public class ProdutoDAO {
             System.err.println("Erro ao salvar o arquivo de produtos: " + e.getMessage());
             return false;
         }
+    }
+
+    public void atualizarProduto(Produto produtoEditado) {
+        List<Produto> produtos = carregarProdutos();
+        for (int i = 0; i < produtos.size(); i++) {
+            if (produtos.get(i).getId() == produtoEditado.getId()) {
+                produtos.set(i, produtoEditado);
+                break;
+            }
+        }
+        salvarProdutos(produtos);
     }
 
     public int gerarProximoId(List<Produto> produtos) {

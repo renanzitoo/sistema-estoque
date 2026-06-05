@@ -27,7 +27,10 @@
     </TableView>
 
     <HBox spacing="10.0" alignment="CENTER_RIGHT">
-        <Button text="Atualizar Tabela" onAction="#handleAtualizar" styleClass="btn-primary" />
-        <Button text="Remover Selecionado" onAction="#handleRemover" styleClass="btn-danger" />
+        <Button text="➕ Adicionar Estoque" onAction="#handleAddEstoque" styleClass="btn-success" />
+        <Button text="📝 Editar" onAction="#handleEditar" styleClass="btn-primary" />
+        <Button text="🗑️ Remover" onAction="#handleRemover" styleClass="btn-danger" />
+        <Region prefWidth="20" />
+        <Button text="🔄 Atualizar Tabela" onAction="#handleAtualizar" />
     </HBox>
 </VBox>

@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -20,29 +21,20 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ProdutoController implements Initializable {
 
-    @FXML
-    private TableView<Produto> tabelaProdutos;
-
-    @FXML
-    private TableColumn<Produto, Integer> colunaId;
-    @FXML
-    private TableColumn<Produto, String> colunaNome;
-    @FXML
-    private TableColumn<Produto, String> colunaCategoria;
-    @FXML
-    private TableColumn<Produto, Double> colunaCusto;
-    @FXML
-    private TableColumn<Produto, Integer> colunaEstoque;
-    @FXML
-    private TableColumn<Produto, Integer> colunaEstoqueSeguranca;
-    @FXML
-    private TableColumn<Produto, Integer> colunaPontoPedido;
-    @FXML
-    private TableColumn<Produto, Integer> colunaConsumoMedio;
+    @FXML private TableView<Produto> tabelaProdutos;
+    @FXML private TableColumn<Produto, Integer> colunaId;
+    @FXML private TableColumn<Produto, String> colunaNome;
+    @FXML private TableColumn<Produto, String> colunaCategoria;
+    @FXML private TableColumn<Produto, Double> colunaCusto;
+    @FXML private TableColumn<Produto, Integer> colunaEstoque;
+    @FXML private TableColumn<Produto, Integer> colunaEstoqueSeguranca;
+    @FXML private TableColumn<Produto, Integer> colunaPontoPedido;
+    @FXML private TableColumn<Produto, Integer> colunaConsumoMedio;
 
     private ProdutoDAO produtoDAO;
     private ObservableList<Produto> listaProdutosObservable;
@@ -74,23 +66,69 @@ public class ProdutoController implements Initializable {
 
     @FXML
     private void handleAdicionar() {
+        abrirTelaCadastro(null);
+    }
+
+    @FXML
+    private void handleEditar() {
+        Produto selecionado = tabelaProdutos.getSelectionModel().getSelectedItem();
+        if (selecionado == null) {
+            mostrarAviso("Selecione um produto para editar.");
+            return;
+        }
+        abrirTelaCadastro(selecionado);
+    }
+
+    private void abrirTelaCadastro(Produto produto) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CadastroProdutoView.fxml"));
             Parent root = loader.load();
 
+            CadastroProdutoController controller = loader.getController();
+            controller.setProdutoParaEditar(produto);
+
             Stage stage = new Stage();
-            stage.setTitle("Cadastrar Produto");
+            stage.setTitle(produto == null ? "Cadastrar Produto" : "Editar Produto");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(new Scene(root));
             stage.showAndWait();
 
-            // Atualiza a tabela após fechar a janela de cadastro
             carregarDados();
-
         } catch (IOException e) {
             e.printStackTrace();
             mostrarErro("Erro ao abrir tela de cadastro.");
         }
+    }
+
+    @FXML
+    private void handleAddEstoque() {
+        Produto selecionado = tabelaProdutos.getSelectionModel().getSelectedItem();
+        if (selecionado == null) {
+            mostrarAviso("Selecione um produto para adicionar estoque.");
+            return;
+        }
+
+        TextInputDialog dialog = new TextInputDialog("0");
+        dialog.setTitle("Entrada de Estoque");
+        dialog.setHeaderText("Produto: " + selecionado.getNome());
+        dialog.setContentText("Quantidade a adicionar:");
+
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(qtdStr -> {
+            try {
+                int qtd = Integer.parseInt(qtdStr);
+                if (qtd > 0) {
+                    selecionado.setEstoque(selecionado.getEstoque() + qtd);
+                    produtoDAO.atualizarProduto(selecionado);
+                    carregarDados();
+                    mostrarInformacao("Estoque atualizado com sucesso!");
+                } else {
+                    mostrarAviso("Insira um valor maior que zero.");
+                }
+            } catch (NumberFormatException e) {
+                mostrarErro("Valor inválido.");
+            }
+        });
     }
 
     @FXML
