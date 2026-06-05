@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="br.com.estoque.controller.CadastroProdutoController" 
+      prefWidth="450.0" style="-fx-background-color: white;" stylesheets="@../css/style.css">
+
+    <padding>
+        <Insets top="30.0" right="30.0" bottom="30.0" left="30.0"/>
+    </padding>
+
+    <Label text="Novo Produto" styleClass="view-title" />
+
+    <GridPane hgap="15.0" vgap="15.0">
+        <columnConstraints>
+            <ColumnConstraints minWidth="150.0" prefWidth="150.0" />
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+
+        <Label text="Nome do Produto:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+        <TextField fx:id="txtNome" GridPane.rowIndex="0" GridPane.columnIndex="1" promptText="Ex: Arroz 5kg" />
+
+        <Label text="Categoria:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <ComboBox fx:id="comboCategoria" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="250.0" />
+
+        <Label text="Custo Unitário (R$):" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+        <TextField fx:id="txtCusto" GridPane.rowIndex="2" GridPane.columnIndex="1" promptText="0.00" />
+
+        <Label text="Validade (dias):" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+        <TextField fx:id="txtValidade" GridPane.rowIndex="3" GridPane.columnIndex="1" promptText="365" />
+
+        <Label text="Estoque Inicial:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+        <TextField fx:id="txtEstoque" GridPane.rowIndex="4" GridPane.columnIndex="1" promptText="10" />
+
+        <Label text="Tempo Reposição (dias):" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+        <TextField fx:id="txtTempoReposicao" GridPane.rowIndex="5" GridPane.columnIndex="1" promptText="5" />
+
+        <Label text="Consumo Diário:" GridPane.rowIndex="6" GridPane.columnIndex="0" />
+        <TextField fx:id="txtConsumoMedio" GridPane.rowIndex="6" GridPane.columnIndex="1" promptText="2" />
+    </GridPane>
+
+    <HBox spacing="15.0" alignment="CENTER_RIGHT">
+        <Button text="Cancelar" onAction="#handleCancelar" styleClass="nav-button" style="-fx-text-fill: #7f8c8d;" />
+        <Button text="Salvar Produto" onAction="#handleSalvar" styleClass="btn-success" prefWidth="150" />
+    </HBox>
+</VBox>

@@ -1,0 +1,104 @@
+# Estrutura: id;nome;categoria;custo;validade;estoque;estoqueDeSeguranca;tempoDeReposicao;consumoMedio;pontoDePedido
+1;Pão Francês;Padaria;1.8;365;13;10;5;2;20
+2;Pão Integral;Padaria;2.9;365;16;10;5;2;20
+3;Pão de Leite;Padaria;4.0;365;19;10;5;2;20
+4;Pão de Forma;Padaria;5.1;365;22;10;5;2;20
+5;Bisnaga;Padaria;4.7;365;25;10;5;2;20
+6;Baguete;Padaria;5.8;365;28;10;5;2;20
+7;Pão Australiano;Padaria;6.9;365;31;10;5;2;20
+8;Pão de Milho;Padaria;8.0;365;34;10;5;2;20
+9;Pão de Centeio;Padaria;9.1;365;37;10;5;2;20
+10;Pão de Batata;Padaria;8.7;365;40;10;5;2;20
+11;Pão de Queijo;Padaria;1.8;365;43;10;5;2;20
+12;Croissant;Padaria;2.9;365;45;10;5;2;20
+13;Sonho;Padaria;4.0;365;49;10;5;2;20
+14;Rosca Doce;Padaria;5.1;365;52;10;5;2;20
+15;Broa de Milho;Padaria;4.7;365;55;10;5;2;20
+16;Pão Sírio;Padaria;5.8;365;58;10;5;2;20
+17;Pão de Hambúrguer;Padaria;6.9;365;61;10;5;2;20
+18;Pão de Hot Dog;Padaria;8.0;365;64;10;5;2;20
+19;Torrada;Padaria;9.1;365;67;10;5;2;20
+20;Folhado de Queijo;Padaria;8.7;365;70;10;5;2;20
+21;Coxinha;Salgado;1.8;365;73;10;5;2;20
+22;Esfiha de Carne;Salgado;2.9;365;76;10;5;2;20
+23;Esfiha de Frango;Salgado;4.0;365;79;10;5;2;20
+24;Empada de Frango;Salgado;5.1;365;82;10;5;2;20
+25;Empada de Palmito;Salgado;4.7;365;85;10;5;2;20
+26;Pastel Assado;Salgado;5.8;365;88;10;5;2;20
+27;Pastel Frito;Salgado;6.9;365;91;10;5;2;20
+28;Quibe;Salgado;8.0;365;94;10;5;2;20
+29;Enroladinho de Salsicha;Salgado;9.1;365;97;10;5;2;20
+30;Pão de Batata Recheado;Salgado;8.7;365;10;10;5;2;20
+31;Risole de Presunto;Salgado;1.8;365;13;10;5;2;20
+32;Risole de Queijo;Salgado;2.9;365;16;10;5;2;20
+33;Torta Salgada;Salgado;4.0;365;19;10;5;2;20
+34;Sanduíche Natural;Salgado;5.1;365;22;10;5;2;20
+35;Misto Quente;Salgado;4.7;365;25;10;5;2;20
+36;Hambúrguer Artesanal;Salgado;5.8;365;28;10;5;2;20
+37;Bauru;Salgado;6.9;365;31;10;5;2;20
+38;Pizza Brotinho;Salgado;8.0;365;34;10;5;2;20
+39;Focaccia;Salgado;9.1;365;37;10;5;2;20
+40;Calzone;Salgado;8.7;365;39;10;5;2;20
+41;Café Expresso;Bebida;1.8;365;43;10;5;2;20
+42;Café com Leite;Bebida;2.9;365;45;10;5;2;20
+43;Capuccino;Bebida;4.0;365;49;10;5;2;20
+44;Chocolate Quente;Bebida;5.1;365;52;10;5;2;20
+45;Suco de Laranja;Bebida;4.7;365;55;10;5;2;20
+46;Suco de Uva;Bebida;5.8;365;58;10;5;2;20
+47;Refrigerante Lata;Bebida;6.9;365;61;10;5;2;20
+48;Água Mineral;Bebida;8.0;365;64;10;5;2;20
+49;Água com Gás;Bebida;9.1;365;67;10;5;2;20
+50;Chá Gelado;Bebida;8.7;365;69;10;5;2;20
+51;Vitamina de Banana;Bebida;1.8;365;73;10;5;2;20
+52;Achocolatado;Bebida;2.9;365;76;10;5;2;20
+53;Energético;Bebida;4.0;365;79;10;5;2;20
+54;Isotônico;Bebida;5.1;365;82;10;5;2;20
+55;Leite Integral;Bebida;4.7;365;85;10;5;2;20
+56;Leite Desnatado;Bebida;5.8;365;88;10;5;2;20
+57;Iogurte Natural;Bebida;6.9;365;91;10;5;2;20
+58;Iogurte Morango;Bebida;8.0;365;94;10;5;2;20
+59;Água de Coco;Bebida;9.1;365;96;10;5;2;20
+60;Suco Detox;Bebida;8.7;365;10;10;5;2;20
+61;Bolo de Chocolate;Confeitaria;1.8;365;13;10;5;2;20
+62;Bolo de Cenoura;Confeitaria;2.9;365;16;10;5;2;20
+63;Bolo de Fubá;Confeitaria;4.0;365;19;10;5;2;20
+64;Bolo Red Velvet;Confeitaria;5.1;365;22;10;5;2;20
+65;Torta de Limão;Confeitaria;4.7;365;25;10;5;2;20
+66;Torta Holandesa;Confeitaria;5.8;365;28;10;5;2;20
+67;Cheesecake;Confeitaria;6.9;365;31;10;5;2;20
+68;Brigadeiro;Confeitaria;8.0;365;34;10;5;2;20
+69;Beijinho;Confeitaria;9.1;365;37;10;5;2;20
+70;Trufa;Confeitaria;8.7;365;40;10;5;2;20
+71;Cookie de Chocolate;Confeitaria;1.8;365;43;10;5;2;20
+72;Donut;Confeitaria;2.9;365;46;10;5;2;20
+73;Muffin;Confeitaria;4.0;365;49;10;5;2;20
+74;Cupcake;Confeitaria;5.1;365;52;10;5;2;20
+75;Pudim;Confeitaria;4.7;365;55;10;5;2;20
+76;Quindim;Confeitaria;5.8;365;58;10;5;2;20
+77;Brownie;Confeitaria;6.9;365;61;10;5;2;20
+78;Palha Italiana;Confeitaria;8.0;365;64;10;5;2;20
+79;Mil Folhas;Confeitaria;9.1;365;67;10;5;2;20
+80;Carolina;Confeitaria;8.7;365;70;10;5;2;20
+81;Bolo de Casamento;Encomendados;1.8;365;73;10;5;2;20
+82;Bolo de Aniversário;Encomendados;2.9;365;76;10;5;2;20
+83;Kit Festa Pequeno;Encomendados;4.0;365;79;10;5;2;20
+84;Kit Festa Médio;Encomendados;5.1;365;82;10;5;2;20
+85;Kit Festa Grande;Encomendados;4.7;365;85;10;5;2;20
+86;Torta Personalizada;Encomendados;5.8;365;88;10;5;2;20
+87;Cento de Salgados;Encomendados;6.9;365;91;10;5;2;20
+88;Mini Sanduíches;Encomendados;8.0;365;94;10;5;2;20
+89;Bolo Corporativo;Encomendados;9.1;365;97;10;5;2;20
+90;Mesa de Doces;Encomendados;8.7;365;10;10;5;2;20
+92;Torta de Frutas;Encomendados;2.9;365;16;10;5;2;20
+93;Torta de Chocolate;Encomendados;4.0;365;19;10;5;2;20
+94;Kit Coffee Break;Encomendados;5.1;365;22;10;5;2;20
+95;Mini Pizzas;Encomendados;4.7;365;25;10;5;2;20
+96;Docinhos Gourmet;Encomendados;5.8;365;28;10;5;2;20
+98;Naked Cake;Encomendados;8.0;365;34;10;5;2;20
+99;Bolo Infantil;Encomendados;9.1;365;35;10;5;2;20
+100;Torta Especial;Encomendados;8.7;365;40;10;5;2;20
+101;Morango do Amor;Confeitaria;6.0;365;20;10;5;2;20
+102;Bolacha;Diversos;2.2;365;34;10;5;2;20
+103;Toddynho;Bebidas;2.5;100;20;240;60;4;480
+104;Yakult;Bebidas;2.5;10;200;300;30;10;600
+105;Risolli;Alimentos;10.0;3;50;50;5;10;100

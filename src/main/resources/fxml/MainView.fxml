@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="br.com.estoque.controller.ProdutoController">
+
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Label text="Gerenciamento de Produtos" styleClass="view-title" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button text="+ Novo Produto" onAction="#handleAdicionar" styleClass="btn-success" />
+    </HBox>
+
+    <TableView fx:id="tabelaProdutos" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colunaId" text="ID" prefWidth="50.0" />
+            <TableColumn fx:id="colunaNome" text="Nome" prefWidth="180.0" />
+            <TableColumn fx:id="colunaCategoria" text="Categoria" prefWidth="120.0" />
+            <TableColumn fx:id="colunaCusto" text="Custo" prefWidth="80.0" />
+            <TableColumn fx:id="colunaEstoque" text="Estoque" prefWidth="80.0" />
+            <TableColumn fx:id="colunaEstoqueSeguranca" text="Estoque Seg." prefWidth="100.0" />
+            <TableColumn fx:id="colunaPontoPedido" text="Ponto Pedido" prefWidth="100.0" />
+            <TableColumn fx:id="colunaConsumoMedio" text="Cons. Médio" prefWidth="100.0" />
+        </columns>
+    </TableView>
+
+    <HBox spacing="10.0" alignment="CENTER_RIGHT">
+        <Button text="Atualizar Tabela" onAction="#handleAtualizar" styleClass="btn-primary" />
+        <Button text="Remover Selecionado" onAction="#handleRemover" styleClass="btn-danger" />
+    </HBox>
+</VBox>
