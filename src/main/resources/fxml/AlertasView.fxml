@@ -23,7 +23,6 @@
             <TableColumn fx:id="colunaNome" text="Nome" prefWidth="200.0" />
             <TableColumn fx:id="colunaEstoque" text="Estoque Atual" prefWidth="120.0" />
             <TableColumn fx:id="colunaPontoPedido" text="Ponto de Pedido" prefWidth="120.0" />
-            <TableColumn fx:id="colunaSugestaoCompra" text="Sugestão de Compra" prefWidth="150.0" />
             <TableColumn fx:id="colunaCategoria" text="Categoria" prefWidth="120.0" />
         </columns>
     </TableView>

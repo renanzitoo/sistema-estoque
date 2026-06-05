@@ -24,7 +24,6 @@ public class AlertasController implements Initializable {
     @FXML private TableColumn<Produto, String> colunaNome;
     @FXML private TableColumn<Produto, Integer> colunaEstoque;
     @FXML private TableColumn<Produto, Integer> colunaPontoPedido;
-    @FXML private TableColumn<Produto, Integer> colunaSugestaoCompra;
     @FXML private TableColumn<Produto, String> colunaCategoria;
     @FXML private Label lblContagemAlertas;
 
@@ -43,13 +42,6 @@ public class AlertasController implements Initializable {
         colunaEstoque.setCellValueFactory(new PropertyValueFactory<>("estoque"));
         colunaPontoPedido.setCellValueFactory(new PropertyValueFactory<>("pontoDePedido"));
         colunaCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
-
-        // Cálculo dinâmico para sugestão de compra: (Ponto de Pedido - Estoque Atual) + Margem
-        colunaSugestaoCompra.setCellValueFactory(cellData -> {
-            Produto p = cellData.getValue();
-            int sugestao = p.getPontoDePedido() - p.getEstoque();
-            return new SimpleIntegerProperty(Math.max(sugestao, 0)).asObject();
-        });
     }
 
     @FXML
