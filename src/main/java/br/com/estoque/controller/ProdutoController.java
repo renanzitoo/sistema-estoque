@@ -102,23 +102,44 @@ public class ProdutoController implements Initializable {
 
     @FXML
     private void handleAddEstoque() {
+        ajustarEstoque(true);
+    }
+
+    @FXML
+    private void handleRemoverEstoque() {
+        ajustarEstoque(false);
+    }
+
+    private void ajustarEstoque(boolean isAdicao) {
         Produto selecionado = tabelaProdutos.getSelectionModel().getSelectedItem();
         if (selecionado == null) {
-            mostrarAviso("Selecione um produto para adicionar estoque.");
+            mostrarAviso("Selecione um produto na tabela.");
             return;
         }
 
+        String titulo = isAdicao ? "Entrada de Estoque" : "Saída de Estoque";
+        String msg = isAdicao ? "Quantidade a adicionar:" : "Quantidade a remover:";
+
         TextInputDialog dialog = new TextInputDialog("0");
-        dialog.setTitle("Entrada de Estoque");
-        dialog.setHeaderText("Produto: " + selecionado.getNome());
-        dialog.setContentText("Quantidade a adicionar:");
+        dialog.setTitle(titulo);
+        dialog.setHeaderText("Produto: " + selecionado.getNome() + " (Atual: " + selecionado.getEstoque() + ")");
+        dialog.setContentText(msg);
 
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(qtdStr -> {
             try {
                 int qtd = Integer.parseInt(qtdStr);
                 if (qtd > 0) {
-                    selecionado.setEstoque(selecionado.getEstoque() + qtd);
+                    if (isAdicao) {
+                        selecionado.setEstoque(selecionado.getEstoque() + qtd);
+                    } else {
+                        if (selecionado.getEstoque() >= qtd) {
+                            selecionado.setEstoque(selecionado.getEstoque() - qtd);
+                        } else {
+                            mostrarErro("Quantidade insuficiente no estoque!");
+                            return;
+                        }
+                    }
                     produtoDAO.atualizarProduto(selecionado);
                     carregarDados();
                     mostrarInformacao("Estoque atualizado com sucesso!");

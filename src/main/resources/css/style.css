@@ -66,6 +66,11 @@
 .table-view .table-cell {
     -fx-padding: 8;
     -fx-border-color: transparent;
+    -fx-alignment: CENTER;
+}
+
+.table-view .column-header .label {
+    -fx-alignment: CENTER;
 }
 
 .table-row-cell:odd {

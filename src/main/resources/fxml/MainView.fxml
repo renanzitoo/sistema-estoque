@@ -15,22 +15,24 @@
 
     <TableView fx:id="tabelaProdutos" VBox.vgrow="ALWAYS">
         <columns>
-            <TableColumn fx:id="colunaId" text="ID" prefWidth="50.0" />
-            <TableColumn fx:id="colunaNome" text="Nome" prefWidth="180.0" />
-            <TableColumn fx:id="colunaCategoria" text="Categoria" prefWidth="120.0" />
-            <TableColumn fx:id="colunaCusto" text="Custo" prefWidth="80.0" />
-            <TableColumn fx:id="colunaEstoque" text="Estoque" prefWidth="80.0" />
-            <TableColumn fx:id="colunaEstoqueSeguranca" text="Estoque Seg." prefWidth="100.0" />
-            <TableColumn fx:id="colunaPontoPedido" text="Ponto Pedido" prefWidth="100.0" />
-            <TableColumn fx:id="colunaConsumoMedio" text="Cons. Médio" prefWidth="100.0" />
+            <TableColumn fx:id="colunaId" text="ID" prefWidth="50.0" style="-fx-alignment: CENTER;" />
+            <TableColumn fx:id="colunaNome" text="Nome" prefWidth="180.0" style="-fx-alignment: CENTER-LEFT;" />
+            <TableColumn fx:id="colunaCategoria" text="Categoria" prefWidth="120.0" style="-fx-alignment: CENTER;" />
+            <TableColumn fx:id="colunaCusto" text="Custo" prefWidth="80.0" style="-fx-alignment: CENTER;" />
+            <TableColumn fx:id="colunaEstoque" text="Estoque" prefWidth="80.0" style="-fx-alignment: CENTER;" />
+            <TableColumn fx:id="colunaEstoqueSeguranca" text="Estoque Seg." prefWidth="100.0" style="-fx-alignment: CENTER;" />
+            <TableColumn fx:id="colunaPontoPedido" text="Ponto Pedido" prefWidth="100.0" style="-fx-alignment: CENTER;" />
+            <TableColumn fx:id="colunaConsumoMedio" text="Cons. Médio" prefWidth="100.0" style="-fx-alignment: CENTER;" />
         </columns>
     </TableView>
 
     <HBox spacing="10.0" alignment="CENTER_RIGHT">
-        <Button text="➕ Adicionar Estoque" onAction="#handleAddEstoque" styleClass="btn-success" />
+        <Button text="➕ Entrada" onAction="#handleAddEstoque" styleClass="btn-success" />
+        <Button text="➖ Saída" onAction="#handleRemoverEstoque" styleClass="btn-danger" />
+        <Separator orientation="VERTICAL" />
         <Button text="📝 Editar" onAction="#handleEditar" styleClass="btn-primary" />
         <Button text="🗑️ Remover" onAction="#handleRemover" styleClass="btn-danger" />
         <Region prefWidth="20" />
-        <Button text="🔄 Atualizar Tabela" onAction="#handleAtualizar" />
+        <Button text="🔄 Atualizar" onAction="#handleAtualizar" />
     </HBox>
 </VBox>
